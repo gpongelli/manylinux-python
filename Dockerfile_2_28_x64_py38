@@ -1,0 +1,31 @@
+FROM quay.io/pypa/manylinux_2_28_x86_64:2023-02-05-56647d4 AS builder
+MAINTAINER Gabriele Pongelli <gabriele.pongelli@gmail.com>
+
+ENV PYTHON_COMPLETE_VERSION=3.8.16
+
+USER root
+
+# install packages to compile pillow and the other python packages on ARM
+RUN yum install -y \
+        autoconf \
+        automake \
+        bash \
+        bzip2-devel \
+        libffi-devel \
+        libtool \
+        openssl-devel \
+        platform-python-devel \
+        tree \
+        wget
+
+RUN mkdir -p /opt/build_python/installed \
+    && cd /opt/build_python \
+    && wget https://www.python.org/ftp/python/${PYTHON_COMPLETE_VERSION}/Python-${PYTHON_COMPLETE_VERSION}.tar.xz > /dev/null 2>&1 \
+    && tar xvf Python-${PYTHON_COMPLETE_VERSION}.tar.xz > /dev/null 2>&1 \
+    && cd Python-${PYTHON_COMPLETE_VERSION} \
+    && ./configure --enable-shared --enable-optimizations --disable-test-modules --prefix=/opt/build_python/installed \
+    && make altinstall \
+    && tree -apugC /opt/build_python/installed
+
+
+CMD ["bash"]

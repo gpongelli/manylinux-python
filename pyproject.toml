@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "manylinux-python"
+version = "0.1.0"
+description = ""
+authors = ["gpongelli <gabriele.pongelli@datalogic.com>"]
+readme = "README.md"
+packages = [{include = "manylinux_python"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
