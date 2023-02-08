@@ -55,7 +55,7 @@ jobs:
 
       # in case of static docker image building, https://github.com/marketplace/actions/docker-build-push-action
       #  github action is better  ( https://github.com/docker/build-push-action )
-      - uses:mr-smithers-excellent/docker-build-push@v5
+      - uses: mr-smithers-excellent/docker-build-push@v5
         name: build docker images
         with:
           image: gpongelli/manylinux_python
