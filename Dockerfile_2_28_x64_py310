@@ -1,6 +1,6 @@
 ARG START_IMAGE
 
-FROM START_IMAGE
+FROM ${START_IMAGE}
 MAINTAINER Gabriele Pongelli <gabriele.pongelli@gmail.com>
 
 ENV PYTHON_COMPLETE_VERSION=3.10.9
