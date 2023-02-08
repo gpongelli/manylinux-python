@@ -28,10 +28,12 @@ RUN mkdir -p /opt/build_python/installed \
     && cd Python-${PYTHON_COMPLETE_VERSION} \
     && ./configure --enable-shared --enable-optimizations --disable-test-modules --prefix=/opt/build_python/installed \
     && make altinstall \
-    && tree -apugC /opt/build_python/installed \
-    && export PATH=/opt/build_python/installed/bin/:$PATH \
-    && export LD_LIBRARY_PATH=/opt/build_python/installed/lib/:$LD_LIBRARY_PATH \
-    && ln -s python3.${PYTHON_VERSION} python3 \
+    && tree -apugC /opt/build_python/installed
+
+ENV PATH "/opt/build_python/installed/bin/:$PATH"
+ENV LD_LIBRARY_PATH "/opt/build_python/installed/lib/:$LD_LIBRARY_PATH"
+
+RUN ln -s /opt/build_python/installed/bin/python3.${PYTHON_VERSION} /usr/local/bin/python3 \
     && python3 --version
 
 
