@@ -33,7 +33,9 @@ RUN mkdir -p /opt/build_python/installed \
 ENV PATH "/opt/build_python/installed/bin/:$PATH"
 ENV LD_LIBRARY_PATH "/opt/build_python/installed/lib/:$LD_LIBRARY_PATH"
 
-RUN ln -s /opt/build_python/installed/bin/python3.${PYTHON_VERSION} /usr/local/bin/python3 \
+RUN rm -rdf /opt/build_python/Python-${PYTHON_COMPLETE_VERSION}.tar.xz \
+    && rm -rdf /opt/build_python/Python-${PYTHON_COMPLETE_VERSION}/ \
+    && ln -s /opt/build_python/installed/bin/python3.${PYTHON_VERSION} /usr/local/bin/python3 \
     && python3 --version
 
 
