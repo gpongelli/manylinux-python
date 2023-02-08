@@ -1,4 +1,6 @@
-FROM quay.io/pypa/manylinux_2_28_x86_64:2023-02-05-56647d4 AS builder
+ARG START_IMAGE
+
+FROM START_IMAGE
 MAINTAINER Gabriele Pongelli <gabriele.pongelli@gmail.com>
 
 ENV PYTHON_COMPLETE_VERSION=3.10.9

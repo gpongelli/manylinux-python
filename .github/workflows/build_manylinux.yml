@@ -46,7 +46,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Setting python version for docekr build
+      - name: Setting python version for docker build
         uses: actions/github-script@v6
         id: set_python_version_build
         with:
@@ -59,12 +59,13 @@ jobs:
         name: build docker images
         with:
           image: gpongelli/manylinux_python
-          tags: manylinux_2_28_x64_py${{ steps.set_python_version_build.outputs.python_no_dot_version }}
+          tags: manylinux_2_28_x64-56647d4_py${{ steps.set_python_version_build.outputs.python_no_dot_version }},py${{ steps.set_python_version_build.outputs.python_no_dot_version }}-latest
           registry: docker.io
           dockerfile: Dockerfile_2_28_x64_py${{ steps.set_python_version_build.outputs.python_no_dot_version }}
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
           platform: x86_64
+          build-args: START_IMAGE=quay.io/pypa/manylinux_2_28_x86_64:2023-02-05-56647d4
 
       #  upload readme.md to dockerhub https://github.com/peter-evans/dockerhub-description
       - name: Docker Hub Description
