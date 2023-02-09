@@ -10,6 +10,6 @@ Made to be used with [cibuildwheel](https://github.com/pypa/cibuildwheel) when b
 python version of wasted time.
 
 
-* GitHub: <https://github.com/gpongelli/pycode128>
+* GitHub: <https://github.com/gpongelli/manylinux-python>
 * Free software: MIT
 
